@@ -1,7 +1,7 @@
 <?php
 
-require_once '../model/pdo-users.php';
-require_once '../controller/session.php';
+include_once '../model/pdo-users.php';
+include_once '../controller/session.php';
 
     $userId = getSessionUserId();
     
@@ -25,3 +25,4 @@ require_once '../controller/session.php';
 
 
     require_once '../view/navbar.view.php';
+?>

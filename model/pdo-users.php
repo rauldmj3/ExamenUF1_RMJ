@@ -326,11 +326,11 @@ function getAdminUser($id){
         $statement->execute();
 
         $result = $statement->fetch();
-        
+
         if($result==1){
             return true;
         }else return false;
     } catch (PDOException $e) {
-        //throw $th;
+        die("No es pot establir connexió amb la base de dades");
     }
 }
