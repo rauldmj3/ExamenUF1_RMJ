@@ -2,7 +2,6 @@
 
 require_once '../model/pdo-articles.php';
 require_once '../controller/input-common.php';
-require_once '../controller/images.php';
 require_once '../controller/session.php';
 
 $errors = [];
@@ -52,7 +51,7 @@ if (isset($_GET['id'])) {
         }
 
     } else {
-        $articleId = $_SESSION["articleId"];
+        $articleId =0; //EXERCICI 15
     }
     $article = getPost($articleId);
 
