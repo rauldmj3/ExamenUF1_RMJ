@@ -6,10 +6,7 @@ include_once '../controller/session.php';
     $userId = getSessionUserId();
     
     $anonUser = $userId == 0;
-
-    $userRol = getAdminUser($userId); //EXERCICI 5
-
-    $adminUser = $userRol == 0;  //EXERCICI 5
+    $adminUser= getAdminUser($userId);
     $changePasswordVisibility = '';
     if (!$anonUser) {        
         $nickname = getUserNicknameById($userId);

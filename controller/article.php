@@ -25,3 +25,5 @@ if (empty($article)) {
     $filetime = filemtime("../uploads/$imagePath");
     require_once '../view/article.view.php';
 }
+
+?>

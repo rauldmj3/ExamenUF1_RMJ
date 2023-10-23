@@ -5,7 +5,7 @@ require_once "../model/pdo-users.php";
 /**
  * Inicia la sessió d'un usuari per email
  *
- * @param string $email email
+ * @param string $email emailo
  */
 function startSession($email, $keepSession)
 {
@@ -16,6 +16,8 @@ function startSession($email, $keepSession)
         $rememberMeToken = bin2hex(random_bytes(16)); 
         setRememberMeToken($userId, $rememberMeToken);
         setcookie("rememberme", $rememberMeToken, 2147483647);
+        setcookie("orderBy","date-desc");
+        setcookie("postsPerPage",10);
     }
 
     $_SESSION["userId"] = $userId; 
@@ -35,7 +37,8 @@ function startSessionByUserId($userId)
 
 function setSessionLifeTime()
 {    
-    ini_set('session.gc_maxlifetime', 1800);
+    //ini_set('session.gc_maxlifetime', 1800);
+    ini_set('session.gc_maxlifetime', 900); // EXERCICI 9
     ini_set('session.cookie-lifetime', 1800);
 }
 
@@ -44,7 +47,8 @@ function setSessionLifeTime()
  */
 function logout()
 {
-    setcookie('rememberme', false); 
+    //setcookie('rememberme', false); 
+    setcookie('rememberme', true); // EXERCICI 10
     session_start();
     session_destroy();
     redirectHome();

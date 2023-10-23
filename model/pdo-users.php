@@ -321,15 +321,12 @@ function getAdminUser($id){
 
         $statement = $connexio->prepare('SELECT rol_admin FROM users WHERE id = :userId');
 
-        $statement->bindParam('userId', $userId, PDO::PARAM_INT);
+        $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
 
         $statement->execute();
 
-        $result = $statement->fetch();
-
-        if($result==1){
-            return true;
-        }else return false;
+        return $statement->fetch();
+        
     } catch (PDOException $e) {
         die("No es pot establir connexió amb la base de dades");
     }
