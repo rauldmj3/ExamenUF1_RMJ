@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2022 a las 19:29:51
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 23-10-2023 a las 20:19:12
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,16 +22,14 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `examuf1_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `examuf1_db`;
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `posts`
 --
 
-DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
   `synopsis` text NOT NULL,
   `title` text NOT NULL,
   `director` text NOT NULL,
@@ -39,15 +37,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `youtube_link` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `dateTime` timestamp NOT NULL DEFAULT current_timestamp(),
-  `image_path` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4;
+  `image_path` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `posts`
---
-
-TRUNCATE TABLE `posts`;
 --
 -- Volcado de datos para la tabla `posts`
 --
@@ -93,32 +85,60 @@ INSERT INTO `posts` (`id`, `synopsis`, `title`, `director`, `link`, `youtube_lin
 -- Estructura de tabla para la tabla `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `nickname` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `reset_token` text NOT NULL,
   `remember_me_token` text NOT NULL,
   `social_provider` enum('','Twitter','GitHub','Google') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `rol_admin` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `users`
---
-
-TRUNCATE TABLE `users`;
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`nickname`, `email`, `password`, `id`, `reset_token`, `remember_me_token`, `social_provider`) VALUES
-('Anakin', 'anakinskywalker@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 1, '', '', ''),
-('Usuari1', 'user@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 2, '', '', ''),
-('Luke', 'lukeskywalker@sapalomera.cat', '', 3, '', 'da8aa95050bdaede6d7415e9af84ef1a', 'GitHub'),
-('Obi-Wan', 'Obiwankenobi.02@gmail.com', '', 4, '', '', 'Twitter');
+INSERT INTO `users` (`nickname`, `email`, `password`, `id`, `reset_token`, `remember_me_token`, `social_provider`, `rol_admin`) VALUES
+('Anakin', 'anakinskywalker@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 1, '', 'a2bc48a69dc7be60417924abf86fe8b2', '', 0),
+('Usuari1', 'user@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 2, '', '', '', 0),
+('Luke', 'lukeskywalker@sapalomera.cat', '', 3, '', 'da8aa95050bdaede6d7415e9af84ef1a', 'GitHub', 0),
+('Obi-Wan', 'Obiwankenobi.02@gmail.com', '', 4, '', '', 'Twitter', 0),
+('Rauldemingo', 'rauldmj2134@gmail.com', '83422503bcfc01d303030e8a7cc80efc', 5, '', '3b7e5a2e058ef492f59226bb329f2ba6', '', 1),
+('pepepepito', 'pepe@gmail.com', '83422503bcfc01d303030e8a7cc80efc', 7, '', '30d82860d1e562d8fc31235a07059765', '', 0);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
