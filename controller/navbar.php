@@ -7,6 +7,10 @@ require_once '../controller/session.php';
     
     $anonUser = $userId == 0;
 
+    $userRol = getAdminUser($userId); //EXERCICI 5
+
+    $adminUser = $userRol == 0;  //EXERCICI 5
+    $changePasswordVisibility = '';
     if (!$anonUser) {        
         $nickname = getUserNicknameById($userId);
     } else $changePasswordVisibility = '';
@@ -18,5 +22,6 @@ require_once '../controller/session.php';
     $signupActive = $file == "sign-up" ? "active" : "";
     $createActive = $file == "edit" ? "active" : "";
     $passwordActive = $file == "change-password" ? "active" : "";    
+
 
     require_once '../view/navbar.view.php';

@@ -28,7 +28,18 @@
                 <li><a class="dropdown-item $loginActive" href="login.php"><span class="icon-user-o"></span> Log in</a></li>
                 <li><a class="dropdown-item $signupActive" href="sign-up.php"><span class="icon-user-plus"></span> Sign up</a></li>
             STR;
-
+          //EXERCICI 5
+          else if($adminUser)  
+                 echo <<<STR
+                  <a class="nav-link dropdown-toggle $createActive $passwordActive" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-2"></i><span class="icon-user-o"></span> $nickname</a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item $createActive" href="edit.php"><span class="icon-plus"></span> New post</a></li>
+                  <li><a class="dropdown-item $passwordActive $changePasswordVisibility" href="change-password.php"><span class="icon-key"></span> Change password</a></li>
+                  <li><a class="dropdown-item " href="recovery-password.php"><span class="icon-key"></span> Recovery password</a></li>
+                  <li><a class="dropdown-item " href="show-users.php"><span class="icon-key"></span> Show users</a></li>
+                  <div class="dropdown-divider"></div>
+                  <li><a class="dropdown-item" href="clear-session.php"><span class="icon-logout"></span> Log out</a></li>
+                  STR;
           else echo <<<STR
                 <a class="nav-link dropdown-toggle $createActive $passwordActive" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-2"></i><span class="icon-user-o"></span> $nickname</a>
                 <ul class="dropdown-menu dropdown-menu-end">

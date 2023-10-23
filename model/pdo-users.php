@@ -314,3 +314,23 @@ function clearResetToken($userId)
     setResetToken($userId, "");
 }
 
+//EXERCICI 5
+function getAdminUser($id){
+    try {
+        $connexio = getConnection();
+
+        $statement = $connexio->prepare('SELECT rol_admin FROM users WHERE id = :userId');
+
+        $statement->bindParam('userId', $userId, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        $result = $statement->fetch();
+        
+        if($result==1){
+            return true;
+        }else return false;
+    } catch (PDOException $e) {
+        //throw $th;
+    }
+}
