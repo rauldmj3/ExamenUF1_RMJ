@@ -33,8 +33,8 @@ function getPosts($userId, $ndxArticle, $postsPerPage, $orderBy, $searchTerm)
     }
 
     if (!empty($searchTerm)) {
-        $whereClause = "WHERE title LIKE \"%$searchTerm%\" OR synopsis LIKE \"%$searchTerm%\"";
-        $andClause = str_replace('WHERE', 'AND', $whereClause);
+        $whereClause = "WHERE title LIKE \"%$searchTerm%\" OR dateTime LIKE \"%$searchTerm%\""; //Exercici  12
+        
     }
     else $whereClause = $andClause = "";
 
@@ -68,7 +68,7 @@ function getPosts($userId, $ndxArticle, $postsPerPage, $orderBy, $searchTerm)
 
         return $statement->fetchAll();
     } catch (PDOException $e) {
-        die("No es pot establir connexió amb la base de dades");
+        die($e);
     }
 }
 

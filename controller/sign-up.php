@@ -46,8 +46,8 @@ function signup($email, $nickname, $password1, $password2) {
 
     if (!empty($errors)) return;
 
-    $md5Hash = md5($password1);
-    insertNewUser($email, $nickname, $md5Hash);
+    $hash = password_hash($password1,PASSWORD_BCRYPT);// EXERCICI 11
+    insertNewUser($email, $nickname, $hash);
     startSession($email, true);
     redirectHome();
 }
